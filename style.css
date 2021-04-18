@@ -17,10 +17,12 @@ body{
     align-items: center;
     width: 100vw;
     height: 50.45vw;
-
     background-color: #333;
 }
 .container{
+    position :relative;
+    right: 130px;
+    align-content: center;
     font-size: 18px;
     font-weight: bold;
     width: 600px;
@@ -43,4 +45,11 @@ body{
 }
 .btn:hover{
     border-color: white;
+}
+
+.sound{
+
+    position: relative;
+    right : 440px;
+    bottom: 300px;
 }

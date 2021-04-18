@@ -1,14 +1,9 @@
 const textElem = document.getElementById('text');
 const btnElem = document.getElementById('Buttons');
 let state = {}
-const Diapers = 1;
-const CryForMommy = 1;
-const nunchakuPacifier=1;
-const Charisma = 50;
-const Strength = 10;
-const Intelligence = 2;
+
 function startGame(){
-    state={}
+    state = {}
     showText(1)
 
 }
@@ -30,12 +25,14 @@ function showText(textNodeIndex){
     })
 }
 
+
 function showOption(option){
-    return true;
+    return option.rState == null || option.rState(state)
 }
 
 function Options(option){
     const nextTextId = option.nextText
+    state = Object.assign(state, option.setState)
     if(nextTextId <= 0){
         return startGame()
     }
@@ -44,6 +41,7 @@ function Options(option){
 }
 
 const text = [
+
     {   id:1,
         text: 'In the next minutes you are going to experience the adventure of Bob. Bob is in his room playing with Shyla, the family dog. Suddenly, he realizes that Ted, his plush bear, is missing. It is up to you to find his dearest friend.<br /> Do you want to start the adventure?',
 
@@ -76,35 +74,28 @@ const text = [
     options:[
         {
             text:'Proceed!',
-            nextText: 4
-        }
-    ]
-},
-{
-    id:4,
-    text:'A last thing to know is that Bob has attributes. Like most babies, his charisma levels are off the charts. 80 Charisma, 10 Strength, 2 Intelligence. Based on these attributes it is decided if the choice you make will take you to the right room or make you lose the game early. Now that everything you have to know has been shared with you, let&#8217;s start the ADVENTURE!',
-    options:[
-        {
-            text:'Start!',
             nextText: 5
         }
     ]
 },
+
 {
     id:5,
     text:'You are in your room playing with Shyla. Out of nowhere you realize that Ted is missing.</br>What are you going to do?',
     options:[
         {
             text:'Open the door and go to the hallway.',
+            setState : {dirtyDiaper : true , nPacifier: true , cry: true, outside : true, pBedroom : true, bathroom:true},
             nextText: 6
         },
         { 
             text: 'Pet Shyla one more time.',
-            addAttribute: Charisma + 10,
+            setState : {dirtyDiaper : true , nPacifier: true , cry: true, outside : true, pBedroom : true, bathroom:true},
             nextText: 6
         },
         {
            text:'Finish your "Match the colors game!"',
+           setState : {dirtyDiaper : true , nPacifier: true , cry: true, outside : true, pBedroom : true, bathroom:true},
            nextText: 6
         }
     ]
@@ -115,15 +106,21 @@ const text = [
     options:[
         {
             text:'Go outside!',
+            rState: (cState) => cState.outside,
+            setState : {outside : false},
             nextText: 7
         },
         { 
             text: 'Go to the bathroom',
+            rState: (cState) => cState.bathroom,
+            setState :{bathroom : false},
             nextText: 8
         },
     
        {
           text:'Go into the parent&#8217;s bedroom',
+          rState : (cState) => cState.pBedroom,
+          setState : {pBedroom : false},
           nextText: 9
        },
 
@@ -139,14 +136,20 @@ const text = [
     options:[
         {
             text:'Hit her with a diaper',
+            rState: (cState) => cState.dirtyDiaper,
+            setState : {dirtyDiaper : false},
             nextText: 7.1
         },
         { 
             text: 'Use the Nunchaku pacifier',
+            rState: (cState) => cState.nPacifier,
+            setState : {nPacifier : false},
             nextText: 7.2
         },
         {
            text:'Cry for Mommy',
+           rState: (cState) => cState.cry,
+           setState : {cry : false},
            nextText: 7.3
         }
     ]
@@ -193,6 +196,7 @@ const text = [
     options:[
         {
             text:'Go Back!',
+            setState:{dirtyDiaper2 :true},
             nextText: 6
         }
        
@@ -269,6 +273,8 @@ const text = [
         },
         {
             text:'Cry for mommy!',
+            rState: (cState) => cState.cry,
+            setState : {cry : false},
             nextText: 10
         } 
          
@@ -397,6 +403,8 @@ const text = [
         },
         {
             text:' Cry for mommy! ',
+            rState: (cState) => cState.cry,
+            setState : {cry : false},
             nextText: 13.2
         }
         
@@ -452,10 +460,14 @@ const text = [
     options:[
         {
             text:'Hit her with a diaper',
+            rState: (cState) => cState.dirtyDiaper2 || cState.dirtyDiaper,
+            setState : {dirtyDiaper2 : false , dirtyDiaper :false},
             nextText: 13.5
         },
         { 
             text: 'Use the Nunchaku pacifier',
+            rState: (cState) => cState.nPacifier,
+            setState : {nPacifier : false},
             
             nextText: 13.5
         },
@@ -528,7 +540,8 @@ const text = [
 }
 
 ]
-console.log(Charisma);
+
+
 
 startGame()
 
