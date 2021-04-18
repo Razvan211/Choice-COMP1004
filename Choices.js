@@ -4,6 +4,9 @@ let state = {}
 const Diapers = 1;
 const CryForMommy = 1;
 const nunchakuPacifier=1;
+const Charisma = 50;
+const Strength = 10;
+const Intelligence = 2;
 function startGame(){
     state={}
     showText(1)
@@ -47,7 +50,7 @@ const text = [
        
         options: [
     {
-        text :'1. Let&#8217;s go!',
+        text :'Let&#8217;s go!',
         nextText: 2
 
     },
@@ -62,7 +65,7 @@ const text = [
     text:'Press the top right X to exit the game',
     options:[
         {
-            text:'1.Go back to the first room!',
+            text:'Go back to the first room!',
             nextText: 1
         }
     ]
@@ -72,7 +75,7 @@ const text = [
     text:'Well done! You did the right thing. Bob is a baby. He does not know too much, but when it comes to his toys, especially Ted, he may get a little aggressive. Currently, Bob has in his inventory the following weapons: 1x Dirty Diapers and a Nunchaku pacifier ( one time use ). Anyway, Bob, like any other baby on this planet, has an unbeatable perk; let&#8217;s call it an ability: Cry for Mommy x 1. This is his ultimate power. You can use it once the whole game and this power will act like the ultimate weapon. If you get caught your mommy will take care of the problem or she will take you to the previous room.',
     options:[
         {
-            text:'1.Proceed!',
+            text:'Proceed!',
             nextText: 4
         }
     ]
@@ -82,7 +85,7 @@ const text = [
     text:'A last thing to know is that Bob has attributes. Like most babies, his charisma levels are off the charts. 80 Charisma, 10 Strength, 2 Intelligence. Based on these attributes it is decided if the choice you make will take you to the right room or make you lose the game early. Now that everything you have to know has been shared with you, let&#8217;s start the ADVENTURE!',
     options:[
         {
-            text:'1.Start!',
+            text:'Start!',
             nextText: 5
         }
     ]
@@ -92,15 +95,16 @@ const text = [
     text:'You are in your room playing with Shyla. Out of nowhere you realize that Ted is missing.</br>What are you going to do?',
     options:[
         {
-            text:'1.Open the door and go to the hallway.',
+            text:'Open the door and go to the hallway.',
             nextText: 6
         },
         { 
-            text: '2.Pet Shyla one more time.',
+            text: 'Pet Shyla one more time.',
+            addAttribute: Charisma + 10,
             nextText: 6
         },
         {
-           text:' 3.Finish your "Match the colors game!"',
+           text:'Finish your "Match the colors game!"',
            nextText: 6
         }
     ]
@@ -110,21 +114,21 @@ const text = [
     text:'You are now in the hallway. You see 3 doors. First one looks like a door that will take you outside of your house. The second one, is the Bathroom door and the last one looks like your parents bedroom door. Oh, wait! The hallway is not ending here...',
     options:[
         {
-            text:'1.Go outside! ',
+            text:'Go outside!',
             nextText: 7
         },
         { 
-            text: '2. Go to the bathroom',
+            text: 'Go to the bathroom',
             nextText: 8
         },
     
        {
-          text:' 3.Go into the parent&#8217;s bedroom"',
+          text:'Go into the parent&#8217;s bedroom',
           nextText: 9
        },
 
         {
-           text:' 3.Go down the hallway"',
+           text:'Go down the hallway',
            nextText: 10
         }
     ]
@@ -134,15 +138,15 @@ const text = [
     text:'I forgot to tell you. Your nanny is a ferocious beast and  you can&#8217;t get caught by her under any circumstances, because you will lose.</br> As you close the door behind you the nanny finds you. Be fast! ',
     options:[
         {
-            text:'1.Hit her with a diaper',
+            text:'Hit her with a diaper',
             nextText: 7.1
         },
         { 
-            text: '2.Use the Nunchaku pacifier',
+            text: 'Use the Nunchaku pacifier',
             nextText: 7.2
         },
         {
-           text:' 3.Cry for Mommy"',
+           text:'Cry for Mommy',
            nextText: 7.3
         }
     ]
@@ -228,7 +232,7 @@ const text = [
     text:'As you follow the corridor you find two more doors. The first one looks like the kitchen door. As for the second one, you don&#8217;t recall seeing it in your 2 years of living.',
     options:[
         {
-            text:'Enter the kitchen ',
+            text:'Enter the kitchen',
             nextText: 11
         },
         {
@@ -244,7 +248,7 @@ const text = [
     text:'Once you enter the kitchen you feel the powerful smell of the substance you love as much as you love Ted. You find your baby bottle that is full of warm milk. You realize it may be a trap, set by the nanny, but will you really give up the opportunity to drink some warm milk?',
     options:[
         {
-            text:'Drink the milk  ',
+            text:'Drink the milk',
             nextText: 11.1
         },
         {
@@ -302,7 +306,7 @@ const text = [
             nextText: 11.5
         },
         {
-            text:'Diaper bomb! ',
+            text:'Diaper bomb!',
             nextText: 11.5
         },
         {
@@ -323,11 +327,11 @@ const text = [
             nextText: 11.6
         },
         {
-            text:'Diaper bomb! ',
+            text:'Diaper bomb!',
             nextText: 11.7
         },
         {
-            text:'Baby punch! ',
+            text:'Baby punch!',
             nextText: 11.8
         }
         
@@ -424,7 +428,7 @@ const text = [
             nextText: 13.3
         },
         {
-            text:'Enter the kitchen ',
+            text:'Enter the kitchen',
             nextText: 11
         }
         
@@ -447,22 +451,23 @@ const text = [
     text:'When you are trying to hug Ted, you hear heavy steps from behind.</br> When you turn around you see the nanny with an evil smile on her face.</br> What are you going to do! ',
     options:[
         {
-            text:'1.Hit her with a diaper',
+            text:'Hit her with a diaper',
             nextText: 13.5
         },
         { 
-            text: '2.Use the Nunchaku pacifier',
+            text: 'Use the Nunchaku pacifier',
+            
             nextText: 13.5
         },
         {
-            text:'3.Try to run!',
+            text:'Try to run!',
             nextText:13.6
         }
     ]
 },
 {
     id:13.5,
-    text:'You missed the nanny. ',
+    text:'You missed the nanny.',
     options:[
         {
             text:'Continue!',
@@ -523,6 +528,7 @@ const text = [
 }
 
 ]
+console.log(Charisma);
 
 startGame()
 
