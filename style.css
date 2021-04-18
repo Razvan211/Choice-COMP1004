@@ -1,0 +1,46 @@
+*, * ::before, ::after{
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;   
+    background: url(Img/Bkg.png);
+    background-size:800px ;
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    background-position: center;
+        
+      }
+body{
+    padding: 0;
+    margin: 0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 50.45vw;
+
+    background-color: #333;
+}
+.container{
+    font-size: 18px;
+    font-weight: bold;
+    width: 600px;
+    max-width: 50%;
+}
+.bt{
+     
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap : 10px;
+    margin-top: 10px;
+}
+.btn{
+    font-size : 15px;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 1px 6px;
+    outline: none;
+}
+.btn:hover{
+    border-color: white;
+}
